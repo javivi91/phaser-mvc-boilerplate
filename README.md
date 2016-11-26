@@ -1,6 +1,6 @@
  Phaser mvc boilerplate
 
-Boilerplate with Phaser + webpack + MVC architecture
+Phaser boilerplate with Webpack + ES6 + MVC architecture
 
 ## Getting Started
 
