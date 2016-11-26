@@ -7,9 +7,11 @@ var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 
 var phaserModule = path.join(__dirname, '/bower_components/phaser/')
-var phaser = path.join(phaserModule, 'build/phaser.min.js')
+var phaser = path.join(phaserModule, 'build/custom/phaser-split.js')
+var pixi = path.join(phaserModule, 'build/custom/pixi.js')
+var p2 = path.join(phaserModule, 'build/custom/p2.js')
 
-var FILE_OUTPUT_NAME = 'game.js';
+var OUTPUT_FILE_NAME = 'game.js';
 var PATHS = {
     src: {
         base: path.resolve(__dirname, 'src/'),
@@ -27,17 +29,19 @@ var PATHS = {
 module.exports = {
     watch: true,
     entry: {
-        app: ['babel-polyfill', 'phaser', PATHS.src.files.main]
+        app: ['babel-polyfill', 'pixi', 'p2', 'phaser', PATHS.src.files.main]
     },
     output: {
         path: PATHS.build.base,
         publicPath: '/',
-        filename: FILE_OUTPUT_NAME
+        filename: OUTPUT_FILE_NAME
     },
     module: {
         loaders: [
             {test: /\.js$/, loader: 'babel', include: PATHS.src.base},
-            {test: /phaser\.js$/, loader: 'expose?Phaser'}
+            {test: /phaser\.js$/, loader: 'expose?Phaser'},
+            {test: /pixi\.js/, loader: 'expose?PIXI'},
+            {test: /p2\.js/, loader: 'expose?p2'}
         ]
     },
     plugins: [
@@ -60,7 +64,13 @@ module.exports = {
     ],
     resolve: {
       alias: {
-        'phaser': phaser
+        'phaser': phaser,
+        'pixi': pixi,
+        'p2': p2,
+        'controllers': path.join(PATHS.src.base, 'js/controllers'),
+        'models': path.join(PATHS.src.base, 'js/models'),
+        'modules': path.join(PATHS.src.base, 'js/modules'),
+        'views': path.join(PATHS.src.base, 'js/views')
       }
     }
 }
