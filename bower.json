@@ -1,0 +1,13 @@
+{
+  "name": "phaser-mvc-boilerplate",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Javier Alcantara <alcantara.javi@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/javivi91/phaser-mvc-boilerplate",
+  "devDependencies": {
+    "phaser": "2.6.2"
+  }
+}
